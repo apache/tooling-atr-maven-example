@@ -1,0 +1,68 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+github:
+  description: "Apache Tooling ATR Maven Example - Trusted Publishing PoC for Maven projects"
+  homepage: https://github.com/apache/tooling-atr-maven-example
+  labels:
+    - apache
+    - tooling
+    - atr
+    - maven
+    - trusted-publishing
+  features:
+    wiki: false
+    issues: true
+    projects: false
+  enabled_merge_buttons:
+    squash: true
+    merge: false
+    rebase: true
+
+  rulesets:
+    - name: "Default Branch Protection"
+      type: branch
+
+notifications:
+  commits: commits@tooling.apache.org
+  issues: issues@tooling.apache.org
+  pullrequests: issues@tooling.apache.org
+
+# https://releases.apache.org/projects/tooling-atr-maven-example
+project:
+  metadata:
+    key: tooling-atr-maven-example
+    committee: tooling
+    name: Apache Tooling ATR Maven Example
+    description: Proof of concept of ATR Trusted Publishing for projects built with Maven, released in GitHub Actions with the standard Maven release process.
+    homepage: https://github.com/apache/tooling-atr-maven-example
+    bug_database: https://github.com/apache/tooling-atr-maven-example/issues
+    mailing_lists: https://lists.apache.org/list.html?dev@tooling.apache.org
+    repositories:
+      - https://github.com/apache/tooling-atr-maven-example
+    categories:
+      - build-management
+    programming_languages:
+      - java
+  policy:
+    vote_recipients:
+      to: dev@tooling.apache.org
+    announce_recipients:
+      to: dev@tooling.apache.org
+  features:
+    atr_sync: true
+    atr_sync_mode: full
