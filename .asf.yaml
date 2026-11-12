@@ -48,8 +48,10 @@ project:
     key: tooling-atr-maven-example
     committee: tooling
     name: Apache Tooling ATR Maven Example
-    description: Proof of concept of ATR Trusted Publishing for projects built with Maven, released in GitHub Actions with the standard Maven release process.
+    description: Proof of concept of ATR Trusted Publishing for projects built with
+      Maven, released in GitHub Actions with the standard Maven release process.
     homepage: https://github.com/apache/tooling-atr-maven-example
+    download_page: https://downloads.apache.org/tooling/
     bug_database: https://github.com/apache/tooling-atr-maven-example/issues
     mailing_lists: https://lists.apache.org/list.html?dev@tooling.apache.org
     repositories:
