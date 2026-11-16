@@ -1,0 +1,63 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version, default: current version without -SNAPSHOT'
+        required: false
+
+# clear all permissions for GITHUB_TOKEN
+permissions: { }
+
+jobs:
+  release:
+    runs-on: ubuntu-26.04
+
+    permissions:
+      # push release commits and tag
+      contents: write
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # release:prepare pushes release commits and tag
+          persist-credentials: true
+
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          java-version: 17
+          distribution: 'zulu'
+
+      - name: Configure Git user
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Release with Maven
+        env:
+          VERSION: ${{ inputs.version }}
+          # also used by Maven builds forked by release plugin
+          # split local repository - installed artifacts go to a temporary directory
+          MAVEN_ARGS: >-
+            -Daether.enhancedLocalRepository.split=true
+            -Daether.enhancedLocalRepository.localPrefix=${{ runner.temp }}/installed
+        # push-to-atr profile from org.apache:apache parent
+        run: mvn release:prepare release:perform -e -B -V -Ppush-to-atr -DreleaseVersion="$VERSION"

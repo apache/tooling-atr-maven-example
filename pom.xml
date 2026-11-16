@@ -93,6 +93,8 @@ under the License.
           <configuration>
             <!-- ATR project key differs from artifactId (the default) -->
             <project>tooling-atr-maven-example</project>
+            <!-- not used in the first phase -->
+            <dryRun>true</dryRun>
           </configuration>
         </plugin>
       </plugins>
