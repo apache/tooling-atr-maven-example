@@ -50,6 +50,7 @@ under the License.
   <properties>
     <javaVersion>17</javaVersion>
     <project.build.outputTimestamp>2026-11-16T20:06:27Z</project.build.outputTimestamp>
+    <version.atr-maven-plugin>1.0.0-beta-2-SNAPSHOT</version.atr-maven-plugin>
   </properties>
 
   <dependencyManagement>
@@ -95,6 +96,14 @@ under the License.
             <project>tooling-atr-maven-example</project>
             <!-- not used in the first phase -->
             <dryRun>true</dryRun>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <configuration>
+            <!-- allow SNAPSHOT version of atr-maven-plugin -->
+            <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
           </configuration>
         </plugin>
       </plugins>

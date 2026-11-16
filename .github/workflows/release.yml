@@ -57,6 +57,7 @@ jobs:
           # also used by Maven builds forked by release plugin
           # split local repository - installed artifacts go to a temporary directory
           MAVEN_ARGS: >-
+            -ntp
             -Daether.enhancedLocalRepository.split=true
             -Daether.enhancedLocalRepository.localPrefix=${{ runner.temp }}/installed
         # push-to-atr profile from org.apache:apache parent
