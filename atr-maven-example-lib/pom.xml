@@ -23,7 +23,7 @@ under the License.
   <parent>
     <groupId>org.apache.tooling</groupId>
     <artifactId>atr-maven-example</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
   </parent>
 
   <artifactId>atr-maven-example-lib</artifactId>
