@@ -35,7 +35,18 @@ github:
 
   rulesets:
     - name: "Default Branch Protection"
-      type: branch
+      target: branch
+      enforcement: active
+      conditions:
+        ref_name:
+          include:
+            - "~DEFAULT_BRANCH"
+          exclude: []
+      rules:
+        - type: deletion
+        - type: non_fast_forward
+        # required by ATR Trusted Publishing protection check
+        - type: creation
 
 notifications:
   commits: commits@tooling.apache.org
