@@ -28,7 +28,7 @@ under the License.
 
   <groupId>org.apache.tooling</groupId>
   <artifactId>atr-maven-example</artifactId>
-  <version>1.0.4-SNAPSHOT</version>
+  <version>1.0.4</version>
   <packaging>pom</packaging>
 
   <name>Apache Tooling ATR Maven Example</name>
@@ -43,13 +43,13 @@ under the License.
   <scm>
     <connection>scm:git:https://github.com/apache/tooling-atr-maven-example.git</connection>
     <developerConnection>scm:git:https://github.com/apache/tooling-atr-maven-example.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>atr-maven-example-1.0.4</tag>
     <url>https://github.com/apache/tooling-atr-maven-example/tree/${project.scm.tag}</url>
   </scm>
 
   <properties>
     <javaVersion>17</javaVersion>
-    <project.build.outputTimestamp>2026-11-19T19:08:54Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2026-11-19T19:42:11Z</project.build.outputTimestamp>
     <version.atr-maven-plugin>1.0.0-beta-2-SNAPSHOT</version.atr-maven-plugin>
   </properties>
 
