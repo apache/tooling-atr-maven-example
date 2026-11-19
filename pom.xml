@@ -130,4 +130,31 @@ under the License.
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <!-- extends push-to-atr profile from org.apache:apache parent -->
+      <id>push-to-atr</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.tooling</groupId>
+            <artifactId>atr-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>upload-to-atr</id>
+                <configuration>
+                  <!-- signing is off, so no .asc file -->
+                  <files combine.self="override">
+                    <file>${project.build.directory}/${project.artifactId}-${project.version}-source-release.${atr-release-type}</file>
+                    <file>${project.build.directory}/${project.artifactId}-${project.version}-source-release.${atr-release-type}.sha512</file>
+                  </files>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
