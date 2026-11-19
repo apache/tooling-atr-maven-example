@@ -94,9 +94,17 @@ under the License.
           <configuration>
             <!-- ATR project key differs from artifactId (the default) -->
             <project>tooling-atr-maven-example</project>
-            <!-- not used in the first phase -->
-            <dryRun>true</dryRun>
           </configuration>
+          <executions>
+            <execution>
+              <!-- execution from push-to-atr profile -->
+              <id>atr-check-composing</id>
+              <configuration>
+                <!-- create the version in ATR when it does not exist -->
+                <createVersion>true</createVersion>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
