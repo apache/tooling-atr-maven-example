@@ -47,6 +47,13 @@ under the License.
     <url>https://github.com/apache/tooling-atr-maven-example/tree/${project.scm.tag}</url>
   </scm>
 
+  <distributionManagement>
+    <site>
+      <id>gh-pages</id>
+      <url>${project.scm.developerConnection}</url>
+    </site>
+  </distributionManagement>
+
   <properties>
     <javaVersion>17</javaVersion>
     <project.build.outputTimestamp>2026-11-19T21:04:03Z</project.build.outputTimestamp>
@@ -112,6 +119,14 @@ under the License.
           <configuration>
             <!-- allow SNAPSHOT version of atr-maven-plugin -->
             <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-publish-plugin</artifactId>
+          <configuration>
+            <pubScmUrl>${project.scm.developerConnection}</pubScmUrl>
+            <scmBranch>gh-pages</scmBranch>
           </configuration>
         </plugin>
       </plugins>
