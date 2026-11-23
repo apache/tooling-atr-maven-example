@@ -48,12 +48,15 @@ jobs:
           java-version: 17
           distribution: 'zulu'
 
+      - name: Check site build
+        run: mvn -e -B -V site site:stage
+
       - name: Configure Git user
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Release with Maven
+      - name: Prepare and Build Release with Maven, upload to ATR
         env:
           VERSION: ${{ inputs.version }}
           # also used by Maven builds forked by release plugin
@@ -64,3 +67,9 @@ jobs:
             -Daether.enhancedLocalRepository.localPrefix=${{ runner.temp }}/installed
         # push-to-atr profile from org.apache:apache parent
         run: mvn release:prepare release:perform -e -B -V -Ppush-to-atr -DreleaseVersion="$VERSION"
+
+      - name: Build site for release
+        run: mvn -f target/checkout -e -B -V site site:stage
+
+      #- name: Publish site for release
+      #  run: mvn -f target/checkout -e -B -V scm-publish:publish-scm
