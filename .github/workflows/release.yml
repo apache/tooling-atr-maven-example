@@ -62,5 +62,12 @@ jobs:
             -ntp
             -Daether.enhancedLocalRepository.split=true
             -Daether.enhancedLocalRepository.localPrefix=${{ runner.temp }}/installed
-        # push-to-atr profile from org.apache:apache parent
-        run: mvn release:prepare release:perform -e -B -V -Ppush-to-atr -DreleaseVersion="$VERSION"
+        run: mvn release:prepare release:perform -e -B -V -DreleaseVersion="$VERSION"
+
+      # https://github.com/apache/tooling-actions/tree/main/upload-to-atr
+      - name: Upload to ATR
+        uses: apache/tooling-actions/upload-to-atr@<COMMIT_HASH>
+        with:
+          version: ${{ inputs.version }}
+          project: TODO extract project id from .asf.yaml?
+          src: target/checkout/target/TBD (need to create a directory to consolidate everything that should be uploaded: source-release, sboms, njord bundle, or anything else?)
